@@ -1,3 +1,31 @@
+# [1.9.0-dev.4](https://github.com/MorpheApp/morphe-cli/compare/v1.9.0-dev.3...v1.9.0-dev.4) (2026-05-26)
+
+
+### Bug Fixes
+
+* Multi patch source minor network times out ([#155](https://github.com/MorpheApp/morphe-cli/issues/155)) ([06e5788](https://github.com/MorpheApp/morphe-cli/commit/06e57889c460cfa334af67c2910dbcb8633191f8))
+
+# [1.9.0-dev.3](https://github.com/MorpheApp/morphe-cli/compare/v1.9.0-dev.2...v1.9.0-dev.3) (2026-05-25)
+
+
+### Bug Fixes
+
+* Close adb when app closes ([#153](https://github.com/MorpheApp/morphe-cli/issues/153)) ([a43de5a](https://github.com/MorpheApp/morphe-cli/commit/a43de5a61ee30b7484b534cb6cc74e03bb297fa1))
+
+# [1.9.0-dev.2](https://github.com/MorpheApp/morphe-cli/compare/v1.9.0-dev.1...v1.9.0-dev.2) (2026-05-20)
+
+
+### Features
+
+* Apply patches from multiple patch bundles, add GUI patch source selector  ([#145](https://github.com/MorpheApp/morphe-cli/issues/145)) ([44ed6c6](https://github.com/MorpheApp/morphe-cli/commit/44ed6c6efe5d7f97624557056b2caca23278eebf))
+
+# [1.9.0-dev.1](https://github.com/MorpheApp/morphe-cli/compare/v1.8.1...v1.9.0-dev.1) (2026-05-11)
+
+
+### Features
+
+* Add setting menu to save patched app crash logs to file ([#143](https://github.com/MorpheApp/morphe-cli/issues/143)) ([90836b5](https://github.com/MorpheApp/morphe-cli/commit/90836b5cedbd6d0642a819abde7c33901a7e81a1))
+
 ## [1.8.1](https://github.com/MorpheApp/morphe-cli/compare/v1.8.0...v1.8.1) (2026-05-11)
 
 

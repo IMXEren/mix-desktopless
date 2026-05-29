@@ -5,6 +5,7 @@
 
 package app.morphe.gui.ui.components
 
+import app.morphe.gui.LocalAdbPreference
 import app.morphe.gui.LocalModeState
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.core.tween
@@ -60,6 +61,7 @@ fun SettingsButton(
     val corners = LocalMorpheCorners.current
     val themeState = LocalThemeState.current
     val modeState = LocalModeState.current
+    val adbPreference = LocalAdbPreference.current
     val configRepository: ConfigRepository = koinInject()
     val patchSourceManager: PatchSourceManager = koinInject()
     val updateCheckRepository: UpdateCheckRepository = koinInject()
@@ -68,8 +70,6 @@ fun SettingsButton(
     var showSettingsDialog by remember { mutableStateOf(false) }
     var autoCleanupTempFiles by remember { mutableStateOf(true) }
     var defaultOutputDirectory by remember { mutableStateOf<String?>(null) }
-    var patchSources by remember { mutableStateOf<List<PatchSource>>(emptyList()) }
-    var activePatchSourceId by remember { mutableStateOf("") }
     var keystorePath by remember { mutableStateOf<String?>(null) }
     var keystorePassword by remember { mutableStateOf<String?>(null) }
     var keystoreAlias by remember { mutableStateOf(DEFAULT_KEYSTORE_ALIAS) }
@@ -82,10 +82,11 @@ fun SettingsButton(
         if (showSettingsDialog) {
             val config = configRepository.loadConfig()
             autoCleanupTempFiles = config.autoCleanupTempFiles
-            defaultOutputDirectory = config.defaultOutputDirectory
-            patchSources = config.patchSource
-            activePatchSourceId = config.activePatchSourceId
-            keystorePath = config.keystorePath
+            // Display the resolved absolute form even though storage may be
+            // bundle-relative — users expect to see a real filesystem path in
+            // the field, not a cryptic basename.
+            defaultOutputDirectory = config.resolvedDefaultOutputDirectory()?.absolutePath
+            keystorePath = config.resolvedKeystorePath()?.absolutePath
             keystorePassword = config.keystorePassword
             keystoreAlias = config.keystoreAlias
             keystoreEntryPassword = config.keystoreEntryPassword
@@ -151,43 +152,6 @@ fun SettingsButton(
             },
             allowCacheClear = allowCacheClear,
             isPatching = isPatching,
-            patchSources = patchSources,
-            activePatchSourceId = activePatchSourceId,
-            onActivePatchSourceChange = { id ->
-                if (id != activePatchSourceId) {
-                    activePatchSourceId = id
-                    scope.launch {
-                        withContext(NonCancellable) {
-                            patchSourceManager.switchSource(id)
-                        }
-                    }
-                }
-            },
-            onAddPatchSource = { source ->
-                patchSources = patchSources + source
-                scope.launch {
-                    configRepository.addPatchSource(source)
-                }
-            },
-            onEditPatchSource = { updated ->
-                patchSources = patchSources.map { if (it.id == updated.id) updated else it }
-                scope.launch {
-                    configRepository.updatePatchSource(updated)
-                    if (updated.id == activePatchSourceId) {
-                        patchSourceManager.clearAll()
-                        patchSourceManager.switchSource(updated.id)
-                    }
-                }
-            },
-            onRemovePatchSource = { id ->
-                patchSources = patchSources.filter { it.id != id }
-                if (activePatchSourceId == id) {
-                    activePatchSourceId = "morphe-default"
-                }
-                scope.launch {
-                    configRepository.removePatchSource(id)
-                }
-            },
             onCacheCleared = {
                 patchSourceManager.notifyCacheCleared()
             },
@@ -232,6 +196,8 @@ fun SettingsButton(
                     }
                 }
             },
+            autoStartAdb = adbPreference.enabled,
+            onAutoStartAdbChange = { adbPreference.onChange(it) },
             collapsibleSectionStates = collapsibleSectionStates,
             onCollapsibleSectionToggle = { id, expanded ->
                 collapsibleSectionStates = collapsibleSectionStates + (id to expanded)
