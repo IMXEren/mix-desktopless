@@ -1,3 +1,10 @@
+## [1.9.1-dev.3](https://github.com/MorpheApp/morphe-cli/compare/v1.9.1-dev.2...v1.9.1-dev.3) (2026-06-02)
+
+
+### Bug Fixes
+
+* signing improvements ([#160](https://github.com/MorpheApp/morphe-cli/issues/160)) ([166f940](https://github.com/MorpheApp/morphe-cli/commit/166f9409b1cbe00af7663545c41548ead2c189c5))
+
 ## [1.9.1-dev.2](https://github.com/MorpheApp/morphe-cli/compare/v1.9.1-dev.1...v1.9.1-dev.2) (2026-05-31)
 
 
