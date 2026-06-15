@@ -1,3 +1,10 @@
+# [1.10.0-dev.1](https://github.com/MorpheApp/morphe-cli/compare/v1.9.2-dev.1...v1.10.0-dev.1) (2026-06-15)
+
+
+### Features
+
+* "your apps" section + settings and tools split + re-orderable patch sources + block play store updates for patched apps ([#176](https://github.com/MorpheApp/morphe-cli/issues/176)) ([d865abd](https://github.com/MorpheApp/morphe-cli/commit/d865abdbbe2258cf24476add02a361b05f3fdf7e))
+
 ## [1.9.2-dev.1](https://github.com/MorpheApp/morphe-cli/compare/v1.9.1...v1.9.2-dev.1) (2026-06-15)
 
 
