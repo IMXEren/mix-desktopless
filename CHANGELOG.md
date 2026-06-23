@@ -1,3 +1,10 @@
+# [1.10.0-dev.3](https://github.com/MorpheApp/morphe-cli/compare/v1.10.0-dev.2...v1.10.0-dev.3) (2026-06-23)
+
+
+### Bug Fixes
+
+* Handle GUI patching xapk / apks, add distinct patch-source channel colors, improve patch loading errors ([#180](https://github.com/MorpheApp/morphe-cli/issues/180)) ([d8245f0](https://github.com/MorpheApp/morphe-cli/commit/d8245f081b507cac74b06e16120e4271ce0e1f96))
+
 # [1.10.0-dev.2](https://github.com/MorpheApp/morphe-cli/compare/v1.10.0-dev.1...v1.10.0-dev.2) (2026-06-23)
 
 
