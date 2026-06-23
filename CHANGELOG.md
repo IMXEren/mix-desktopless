@@ -1,3 +1,10 @@
+# [1.10.0-dev.2](https://github.com/MorpheApp/morphe-cli/compare/v1.10.0-dev.1...v1.10.0-dev.2) (2026-06-23)
+
+
+### Features
+
+* route links through patched app + uninstall from "Your Apps" section's cards ([#179](https://github.com/MorpheApp/morphe-cli/issues/179)) ([1626ce5](https://github.com/MorpheApp/morphe-cli/commit/1626ce5ffe3300de2299443ed9b7587ebd1cdcb6))
+
 # [1.10.0-dev.1](https://github.com/MorpheApp/morphe-cli/compare/v1.9.2-dev.1...v1.10.0-dev.1) (2026-06-15)
 
 
