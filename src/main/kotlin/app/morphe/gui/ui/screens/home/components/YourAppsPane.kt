@@ -16,8 +16,10 @@ import androidx.compose.foundation.hoverable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.heightIn
@@ -56,7 +58,10 @@ import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.foundation.gestures.detectTapGestures
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.window.Dialog
+import androidx.compose.ui.window.DialogProperties
 import app.morphe.engine.model.PatchedAppRecord
 import app.morphe.gui.ui.screens.home.DeviceAppInfo
 import app.morphe.gui.ui.screens.home.PatchedAppState
@@ -219,7 +224,9 @@ fun YourAppRow(
     onUpdate: () -> Unit,
     onForget: () -> Unit,
     onInstall: () -> Unit = {},
+    onUninstall: () -> Unit = {},
     installing: Boolean = false,
+    uninstalling: Boolean = false,
 ) {
     val corners = LocalMorpheCorners.current
     val mono = LocalMorpheFont.current
@@ -363,6 +370,15 @@ fun YourAppRow(
                 )
             }
             DetailActionPill("RE-PATCH", Icons.Default.Refresh, accents.primary, mono, corners.small, onClick = onRepatch)
+            // Only offer uninstall when the app is actually on the connected device.
+            if (deviceInfo?.installed == true) {
+                DetailActionPill(
+                    if (uninstalling) "UNINSTALLING…" else "UNINSTALL",
+                    Icons.Default.Delete,
+                    Color(0xFFE0504D), mono, corners.small,
+                    onClick = if (uninstalling) ({}) else onUninstall,
+                )
+            }
             DetailActionPill(
                 "FORGET", Icons.Default.Delete,
                 MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.7f), mono, corners.small,
@@ -389,7 +405,9 @@ fun PatchedAppDetailDialog(
     onForget: () -> Unit,
     onOpenFolder: () -> Unit,
     onInstall: () -> Unit = {},
+    onUninstall: () -> Unit = {},
     installing: Boolean = false,
+    uninstalling: Boolean = false,
 ) {
     val mono = LocalMorpheFont.current
     val accents = LocalMorpheAccents.current
@@ -398,18 +416,34 @@ fun PatchedAppDetailDialog(
     val hasUpdate = updateInfo != null && (updateInfo.appOutdated || updateInfo.sources.any { it.outdated })
     val installPending = deviceInfo?.installPending == true
 
-    Dialog(onDismissRequest = onDismiss) {
+    Dialog(
+        onDismissRequest = onDismiss,
+        properties = DialogProperties(usePlatformDefaultWidth = false),
+    ) {
+        BoxWithConstraints(
+            modifier = Modifier
+                .fillMaxSize()
+                // Tap outside the card to dismiss (the card swallows its own taps below).
+                .pointerInput(Unit) { detectTapGestures { onDismiss() } },
+            contentAlignment = Alignment.Center,
+        ) {
+        // Grow with content, but cap at ~90% of the window height so the dialog
+        // can use a tall screen like Settings does, instead of the old fixed
+        // 560dp cap — while still wrapping shorter content.
+        val maxDialogHeight = maxHeight * 0.9f
         Surface(
             shape = RoundedCornerShape(corners.large),
             color = MaterialTheme.colorScheme.surface,
             border = androidx.compose.foundation.BorderStroke(
                 1.dp, accents.primary.copy(alpha = 0.25f),
             ),
-            modifier = Modifier.widthIn(max = 480.dp),
+            modifier = Modifier
+                .widthIn(max = 480.dp)
+                .pointerInput(Unit) { detectTapGestures { } },
         ) {
             Column(
                 modifier = Modifier
-                    .heightIn(max = 560.dp)
+                    .heightIn(max = maxDialogHeight)
                     .verticalScroll(rememberScrollState())
                     .padding(20.dp),
                 verticalArrangement = Arrangement.spacedBy(14.dp),
@@ -594,6 +628,17 @@ fun PatchedAppDetailDialog(
                         onDismiss(); onRepatch()
                     }
                 }
+                // Uninstall from the connected device — only when it's actually installed.
+                if (deviceInfo?.installed == true) {
+                    Row(horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.fillMaxWidth()) {
+                        WideActionButton(
+                            if (uninstalling) "UNINSTALLING…" else "UNINSTALL",
+                            "remove from device", Icons.Default.Delete,
+                            Color(0xFFE0504D), mono, corners.small,
+                            onClick = if (uninstalling) ({}) else ({ onDismiss(); onUninstall() }),
+                        )
+                    }
+                }
                 Row(horizontalArrangement = Arrangement.spacedBy(8.dp), modifier = Modifier.fillMaxWidth()) {
                     WideActionButton("FOLDER", null, Icons.AutoMirrored.Filled.OpenInNew, accents.secondary, mono, corners.small, onClick = onOpenFolder)
                     WideActionButton(
@@ -602,6 +647,7 @@ fun PatchedAppDetailDialog(
                     ) { onDismiss(); onForget() }
                 }
             }
+        }
         }
     }
 }
