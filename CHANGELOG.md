@@ -1,3 +1,10 @@
+# [1.10.0-dev.5](https://github.com/MorpheApp/morphe-cli/compare/v1.10.0-dev.4...v1.10.0-dev.5) (2026-06-28)
+
+
+### Features
+
+* Patch sources follows latest (stable/dev) instead of to last used version ([#185](https://github.com/MorpheApp/morphe-cli/issues/185)) ([5d34993](https://github.com/MorpheApp/morphe-cli/commit/5d349931b283f62f617e7a1ceb10009cf2639a8e))
+
 # [1.10.0-dev.4](https://github.com/MorpheApp/morphe-cli/compare/v1.10.0-dev.3...v1.10.0-dev.4) (2026-06-27)
 
 
