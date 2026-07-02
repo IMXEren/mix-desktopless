@@ -1,3 +1,10 @@
+# [1.10.0-dev.8](https://github.com/MorpheApp/morphe-cli/compare/v1.10.0-dev.7...v1.10.0-dev.8) (2026-07-02)
+
+
+### Bug Fixes
+
+* Allow patches with empty targets to apply automatically ([#207](https://github.com/MorpheApp/morphe-cli/issues/207)) ([5a07bf7](https://github.com/MorpheApp/morphe-cli/commit/5a07bf7d6fe34d42e2dd1b95e601386e6e214f83))
+
 # [1.10.0-dev.7](https://github.com/MorpheApp/morphe-cli/compare/v1.10.0-dev.6...v1.10.0-dev.7) (2026-06-29)
 
 
