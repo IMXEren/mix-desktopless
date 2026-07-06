@@ -314,7 +314,7 @@ internal object PatchCommand : Callable<Int> {
 
     @CommandLine.Option(
         names = ["--verify-with-sdk"],
-        description = ["Verify the patched DEX and APK files using the provided Android SDK. If not specified, the patched files will not be verified."],
+        description = ["Verify the patched DEX and APK files using the provided Android SDK. If not specified, the patched files will not be verified. Verification may throw false positives and is for patch developer use only."],
         fallbackValue = "",
         arity = "0..1",
     )
