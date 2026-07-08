@@ -29,6 +29,7 @@ import androidx.compose.material.icons.filled.Info
 import androidx.compose.material.icons.filled.ArrowDropUp
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Palette
+import androidx.compose.material.icons.filled.Warning
 import androidx.compose.material.icons.filled.BatteryFull
 import androidx.compose.material.icons.filled.SignalCellular4Bar
 import androidx.compose.material.icons.filled.Wifi
@@ -131,6 +132,7 @@ fun IconStudioDialog(
     var selectedMask by remember { mutableStateOf(3) }
     var dragging by remember { mutableStateOf(false) }
     var selectedTemplate by remember { mutableStateOf<String?>(null) }
+    var importWarning by remember { mutableStateOf<String?>(null) }
 
     val selected = project.layers.firstOrNull { it.id == selectedId }
 
@@ -229,11 +231,19 @@ fun IconStudioDialog(
         return dest.absolutePath
     }
 
+    fun warnFor(outcome: ForegroundPrep.Outcome): String? = when (outcome) {
+        ForegroundPrep.Outcome.OPAQUE ->
+            "This image has no transparency, so the themed & notification icons will be a solid block. Use a cut-out (transparent) PNG for those to show your logo's shape."
+        ForegroundPrep.Outcome.UNREADABLE -> "Couldn't read this image to check its transparency."
+        else -> null  // Already transparent. Nothing to warn about
+    }
+
     fun addImageLayer() {
         val picked = pickImage() ?: return
         scope.launch {
-            val path = withContext(Dispatchers.IO) { copyIntoProject(picked) }
-            addLayer(IconProject.LayerContent.Image(path))
+            val prepared = withContext(Dispatchers.IO) { ForegroundPrep.prepare(picked, File(IconExporter.projectDir(packageName), "source")) }
+            addLayer(IconProject.LayerContent.Image(prepared.path))
+            importWarning = warnFor(prepared.outcome)
         }
     }
 
@@ -242,8 +252,9 @@ fun IconStudioDialog(
         if (sel.content !is IconProject.LayerContent.Image) return
         val picked = pickImage() ?: return
         scope.launch {
-            val path = withContext(Dispatchers.IO) { copyIntoProject(picked) }
-            updateSelected { it.copy(content = IconProject.LayerContent.Image(path)) }
+            val prepared = withContext(Dispatchers.IO) { ForegroundPrep.prepare(picked, File(IconExporter.projectDir(packageName), "source")) }
+            updateSelected { it.copy(content = IconProject.LayerContent.Image(prepared.path)) }
+            importWarning = warnFor(prepared.outcome)
         }
     }
 
@@ -358,7 +369,13 @@ fun IconStudioDialog(
                             }
                         }
                         Spacer(Modifier.height(14.dp))
-                        Label("LAUNCHER MASKS", mono)
+                        Label("PREVIEW SHAPES", mono)
+                        Text(
+                            "Each launcher picks its own shape (Not a choice). Tap to preview how it'll be cropped.",
+                            fontFamily = mono, fontSize = 8.sp, lineHeight = 11.sp,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.4f),
+                            modifier = Modifier.padding(top = 2.dp),
+                        )
                         Spacer(Modifier.height(6.dp))
                         Row(horizontalArrangement = Arrangement.spacedBy(10.dp)) {
                             MASKS.forEachIndexed { i, (name, shape) ->
@@ -382,6 +399,21 @@ fun IconStudioDialog(
                     Box(Modifier.weight(1f).fillMaxHeight()) {
                         val scrollState = rememberScrollState()
                         Column(Modifier.fillMaxWidth().verticalScroll(scrollState).padding(end = 12.dp), verticalArrangement = Arrangement.spacedBy(14.dp)) {
+                        // Import warning lives inside the scrollable controls so it never
+                        // steals height from the (fixed) preview column and squishes it.
+                        importWarning?.let { msg ->
+                            Row(
+                                Modifier.fillMaxWidth().clip(RoundedCornerShape(6.dp))
+                                    .background(Color(0xFFE0504D).copy(alpha = 0.12f))
+                                    .border(1.dp, Color(0xFFE0504D).copy(alpha = 0.4f), RoundedCornerShape(6.dp))
+                                    .padding(10.dp),
+                                horizontalArrangement = Arrangement.spacedBy(8.dp), verticalAlignment = Alignment.Top,
+                            ) {
+                                Icon(Icons.Default.Warning, contentDescription = null, tint = Color(0xFFE0504D), modifier = Modifier.size(14.dp))
+                                Text(msg, fontFamily = mono, fontSize = 9.sp, lineHeight = 12.sp, color = MaterialTheme.colorScheme.onSurface, modifier = Modifier.weight(1f))
+                                Icon(Icons.Default.Close, contentDescription = "Dismiss", tint = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.size(13.dp).clickable { importWarning = null })
+                            }
+                        }
                         LayersPanel(project.layers, selectedId, accents, mono, onSelect = { selectedId = it }, onAddImage = { addImageLayer() }, onAddText = { addLayer(IconProject.LayerContent.Text()) }, onAddShape = { addLayer(IconProject.LayerContent.Shape()) }, onReorder = { f, t -> reorderDisplay(f, t) }, onDelete = { deleteSelected() })
 
                         BackgroundControls(project, accents, mono, onImportBg = { importBackground() }) { commit(it) }

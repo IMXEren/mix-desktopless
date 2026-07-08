@@ -72,8 +72,11 @@ object IconRenderer {
                     }
                 }
                 is IconProject.Background.Image -> {
-                    val src = loadSource(bg.sourcePath)
-                    if (src != null) drawCover(g, src, size) else { g.color = Color.WHITE; g.fillRect(0, 0, size, size) }
+                    // Adaptive backgrounds MUST be fully opaque (the launcher masks them and
+                    // can't handle a see-through background). Fill first so any transparency
+                    // in the imported image is flattened onto an opaque white base.
+                    g.color = Color.WHITE; g.fillRect(0, 0, size, size)
+                    loadSource(bg.sourcePath)?.let { drawCover(g, it, size) }
                 }
             }
         } finally {
