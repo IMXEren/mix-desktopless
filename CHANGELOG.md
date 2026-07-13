@@ -1,3 +1,10 @@
+# [1.10.0-dev.11](https://github.com/MorpheApp/morphe-cli/compare/v1.10.0-dev.10...v1.10.0-dev.11) (2026-07-13)
+
+
+### Bug Fixes
+
+* fix patch repo rate limiting by switching to raw links + stream downloads to disk ([#214](https://github.com/MorpheApp/morphe-cli/issues/214)) ([e21646c](https://github.com/MorpheApp/morphe-cli/commit/e21646cb4e184ca8a5efb9ecc3ea2b280f2a1cc7))
+
 # [1.10.0-dev.10](https://github.com/MorpheApp/morphe-cli/compare/v1.10.0-dev.9...v1.10.0-dev.10) (2026-07-09)
 
 
