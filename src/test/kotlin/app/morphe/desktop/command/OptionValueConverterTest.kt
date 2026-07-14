@@ -3,7 +3,7 @@
  * https://github.com/MorpheApp/morphe-desktop
  */
 
-package app.morphe.cli.command
+package app.morphe.desktop.command
 
 import kotlin.test.Test
 

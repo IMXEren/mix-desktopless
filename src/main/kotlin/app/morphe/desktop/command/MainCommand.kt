@@ -3,9 +3,9 @@
  * https://github.com/MorpheApp/morphe-desktop
  */
 
-package app.morphe.cli.command
+package app.morphe.desktop.command
 
-import app.morphe.cli.command.utility.UtilityCommand
+import app.morphe.desktop.command.utility.UtilityCommand
 import app.morphe.library.logging.Logger
 import org.jetbrains.annotations.VisibleForTesting
 import picocli.CommandLine
@@ -14,7 +14,7 @@ import picocli.CommandLine.IVersionProvider
 import java.util.Properties
 import kotlin.system.exitProcess
 
-fun cliMain(args: Array<String>) {
+fun desktopMain(args: Array<String>) {
     Logger.setDefault()
     val exitCode = CommandLine(MainCommand).execute(*args)
     exitProcess(exitCode)
@@ -36,7 +36,7 @@ private object CLIVersionProvider : IVersionProvider {
 }
 
 @Command(
-    name = "morphe-cli",
+    name = "morphe-desktop",
     description = ["Command line application to use Morphe."],
     mixinStandardHelpOptions = true,
     versionProvider = CLIVersionProvider::class,

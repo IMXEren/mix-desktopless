@@ -3,14 +3,15 @@
  * https://github.com/MorpheApp/morphe-desktop
  */
 
-package app.morphe.cli.command
+package app.morphe.desktop.command
 
-import app.morphe.cli.command.model.PatchBundle
+import app.morphe.desktop.command.model.PatchBundle
 import app.morphe.engine.patches.LoadedBundle
 import app.morphe.engine.patches.PatchBundleLoader
-import app.morphe.cli.command.model.findMatchingBundle
-import app.morphe.cli.command.model.mergeWithBundle
-import app.morphe.cli.command.model.withUpdatedBundle
+import app.morphe.desktop.command.model.findMatchingBundle
+import app.morphe.desktop.command.model.mergeWithBundle
+import app.morphe.desktop.command.model.withUpdatedBundle
+import app.morphe.desktop.command.CliHttpClient
 import kotlinx.serialization.json.Json
 import picocli.CommandLine
 import picocli.CommandLine.Command

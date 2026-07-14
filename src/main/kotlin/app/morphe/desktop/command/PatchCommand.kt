@@ -6,12 +6,11 @@
  * https://github.com/ReVanced/revanced-cli/tree/731865e167ee449be15fff3dde7a476faea0c2de
  */
 
-package app.morphe.cli.command
+package app.morphe.desktop.command
 
-import app.morphe.cli.command.model.*
+import app.morphe.desktop.command.model.*
+import app.morphe.desktop.command.CliHttpClient
 import app.morphe.engine.MorpheData
-import app.morphe.engine.PatchEngine
-import app.morphe.engine.isWindows
 import app.morphe.engine.supportedVersionsFor
 import app.morphe.engine.PatchEngine.Config.Companion.DEFAULT_KEYSTORE_ALIAS
 import app.morphe.engine.PatchEngine.Config.Companion.DEFAULT_KEYSTORE_PASSWORD
@@ -31,12 +30,10 @@ import app.morphe.patcher.dex.NoOpDexVerifier
 import app.morphe.patcher.dex.SdkDexVerifier
 import app.morphe.patcher.logging.toMorpheLogger
 import app.morphe.patcher.patch.Patch
-import app.morphe.patcher.patch.loadPatchesFromJar
 import app.morphe.patcher.patch.setOptions
 import app.morphe.patcher.resource.CpuArchitecture
 import kotlinx.coroutines.runBlocking
 import kotlinx.serialization.ExperimentalSerializationApi
-import kotlinx.serialization.decodeFromString
 import kotlinx.serialization.json.Json
 import kotlinx.serialization.json.encodeToStream
 import org.jetbrains.annotations.VisibleForTesting

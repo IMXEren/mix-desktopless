@@ -3,7 +3,7 @@
  * https://github.com/MorpheApp/morphe-desktop
  */
 
-package app.morphe.cli.command.model
+package app.morphe.desktop.command.model
 
 import app.morphe.patcher.patch.Patch
 import kotlinx.serialization.ExperimentalSerializationApi
