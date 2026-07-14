@@ -3,7 +3,7 @@
  * https://github.com/MorpheApp/morphe-desktop
  */
 
-package app.morphe.cli.command.utility
+package app.morphe.desktop.command.utility
 
 import app.morphe.library.installation.installer.AdbInstaller
 import app.morphe.library.installation.installer.AdbInstallerResult

@@ -3,7 +3,7 @@
  * https://github.com/MorpheApp/morphe-desktop
  */
 
-package app.morphe.cli.command.model
+package app.morphe.desktop.command.model
 
 enum class PatchingStep {
     PATCHING,

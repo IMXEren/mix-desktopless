@@ -3,9 +3,9 @@
  * https://github.com/MorpheApp/morphe-desktop
  */
 
-package app.morphe.cli.command
+package app.morphe.desktop.command
 
-import app.morphe.engine.CompatibleVersionsMap
+import app.morphe.desktop.command.CliHttpClient
 import app.morphe.engine.VersionMap
 import app.morphe.engine.mostCommonCompatibleVersions
 import app.morphe.patcher.patch.loadPatchesFromJar

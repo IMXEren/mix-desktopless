@@ -6,8 +6,9 @@
  * https://github.com/ReVanced/revanced-cli/tree/731865e167ee449be15fff3dde7a476faea0c2de
  */
 
-package app.morphe.cli.command
+package app.morphe.desktop.command
 
+import app.morphe.desktop.command.CliHttpClient
 import app.morphe.engine.compatibleVersionsForDisplay
 import app.morphe.engine.isCompatibleWith
 import app.morphe.patcher.patch.Patch
