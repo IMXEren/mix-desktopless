@@ -1,11 +1,11 @@
 /*
  * Copyright 2026 Morphe.
- * https://github.com/MorpheApp/morphe-cli
+ * https://github.com/MorpheApp/morphe-desktop
  */
 
 package app.morphe.gui.ui.screens.patches
 
-import app.morphe.cli.command.model.toPatchBundle
+import app.morphe.desktop.command.model.toPatchBundle
 import app.morphe.patcher.patch.loadPatchesFromJar
 import cafe.adriel.voyager.core.model.ScreenModel
 import cafe.adriel.voyager.core.model.screenModelScope

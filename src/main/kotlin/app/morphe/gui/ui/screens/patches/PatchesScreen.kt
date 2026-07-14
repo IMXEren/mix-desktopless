@@ -1,6 +1,6 @@
 /*
  * Copyright 2026 Morphe.
- * https://github.com/MorpheApp/morphe-cli
+ * https://github.com/MorpheApp/morphe-desktop
  */
 
 package app.morphe.gui.ui.screens.patches
@@ -853,8 +853,8 @@ private fun BottomActionBar(
                     .fillMaxWidth()
                     .height(3.dp)
                     .clip(RoundedCornerShape(1.dp)),
-                color = MaterialTheme.colorScheme.onSurfaceVariant,
-                trackColor = MaterialTheme.colorScheme.outline.copy(alpha = 0.1f)
+                color = accents.primary,
+                trackColor = accents.primary.copy(alpha = 0.15f)
             )
             Spacer(modifier = Modifier.height(8.dp))
             Text(

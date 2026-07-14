@@ -1,6 +1,6 @@
 /*
  * Copyright 2026 Morphe.
- * https://github.com/MorpheApp/morphe-cli
+ * https://github.com/MorpheApp/morphe-desktop
  */
 
 package app.morphe.engine.util
@@ -10,7 +10,7 @@ import java.io.File
 /**
  * Shared filename helpers + output-path computation for patched APKs. Used by
  * both the GUI ([app.morphe.gui.ui.screens.patches.PatchSelectionViewModel])
- * and the CLI ([app.morphe.cli.command.PatchCommand]) so identical inputs
+ * and the CLI ([app.morphe.desktop.command.PatchCommand]) so identical inputs
  * produce identical output paths — no surprises when users switch between
  * surfaces.
  *

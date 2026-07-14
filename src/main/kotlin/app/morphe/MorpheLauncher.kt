@@ -1,6 +1,6 @@
 /*
  * Copyright 2026 Morphe.
- * https://github.com/MorpheApp/morphe-cli
+ * https://github.com/MorpheApp/morphe-desktop
  */
 
 package app.morphe
@@ -19,7 +19,7 @@ fun main(args: Array<String>) {
             logger.info("Running in Headless environment, falling back to CLI mode.")
         }
 
-        picocli.CommandLine(app.morphe.cli.command.MainCommand)
+        picocli.CommandLine(app.morphe.desktop.command.MainCommand)
             .execute(*args)
             .let(System::exit)
     }
