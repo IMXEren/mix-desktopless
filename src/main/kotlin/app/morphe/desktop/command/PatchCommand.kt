@@ -383,11 +383,24 @@ internal object PatchCommand : Callable<Int> {
     )
     private var updateOptions: Boolean = false
 
+    @CommandLine.Option(
+        // Default logger gets set to FINE logging level. Any developer message with the FINE logging will get displayed.
+        names = ["--verbose"],
+        description = ["Enables more detailed logging"],
+    )
+    private var verbose: Boolean = false
+
     override fun call(): Int {
         // Check for any newer version
         UpdateChecker.check(logger)?.let { logger.info(it) }
 
         // region Setup
+
+        if (verbose){
+            val rootLogger = java.util.logging.Logger.getLogger("")
+            rootLogger.level = java.util.logging.Level.FINE
+            rootLogger.handlers.forEach { it.level = java.util.logging.Level.FINE }
+        }
 
         // Default output uses the unified scheme shared with the GUI:
         //   <input.parent>/<appLabel>/<appLabel>-Morphe-{apkVer}-patches-{patchesVer}.apk
