@@ -34,11 +34,11 @@ jobs:
         shell: bash
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: ./gradlew build --no-daemon
+        run: ./gradlew build shadowCliJar --no-daemon
 
       - name: Upload artifacts
         if: matrix.os == 'ubuntu-latest'
         uses: actions/upload-artifact@v7
         with:
           archive: false
-          path: build/libs/morphe-desktop-*-all.jar
+          path: build/libs/mix-desktopless-*-cli.jar

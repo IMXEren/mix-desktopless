@@ -32,7 +32,7 @@
       {
         "assets": [
           {
-            "path": "build/libs/morphe-desktop*-all.jar"
+            "path": "build/libs/mix-desktopless*-cli.jar"
           }
         ],
         successComment: false
