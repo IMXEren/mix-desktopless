@@ -13,7 +13,6 @@ plugins {
     id("com.gradleup.shadow")
     application
     `maven-publish`
-    signing
 }
 
 group = "app.morphe"
@@ -171,12 +170,13 @@ tasks {
     // Shadow JAR — the only distribution artifact
     // -------------------------------------------------------------------------
     shadowJar {
+        archiveBaseName.set("mix-desktopless")
+        archiveClassifier.set("all")
         exclude(
             "/prebuilt/linux/aapt",
             "/prebuilt/windows/aapt.exe",
             "/prebuilt/*/aapt_*",
         )
-
         // NOTICE/LICENSE handling:
         //   * Global strategy is EXCLUDE (first-wins) so duplicates at non-transformed
         //     paths — including native libs like libskiko-*.dylib — are deduplicated.
@@ -232,6 +232,86 @@ tasks {
         transform(NoticeMergeTransformer::class.java)
     }
 
+    // -------------------------------------------------------------------------
+    // Shadow CLI JAR — GUI-free artifact (no Compose, Koin, Voyager, JNA, AboutLibraries)
+    // -------------------------------------------------------------------------
+    // Excluding app/morphe/gui/** is the ONLY surface-specific rule. Shadow minimize
+    // handles the rest: any dependency reachable ONLY from excluded GUI classes is
+    // automatically stripped. No per-dependency exclude list to rot.
+    register<com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar>("shadowCliJar") {
+        archiveBaseName.set("mix-desktopless")
+        archiveClassifier.set("cli")
+
+        from(sourceSets.main.get().output) {
+            // Exclude at INPUT level so minimize never sees GUI class references.
+            // If we used the task-level exclude(), minimize would still analyze GUI
+            // bytecode and pull in Compose/Koin/Voyager/Skiko as "used" — then the
+            // post-minimize filter strips the GUI classes but leaves their deps behind.
+            exclude("app/morphe/gui/**")
+            exclude("fonts/**")
+            exclude("morphe_logo.*")
+        }
+        configurations = listOf(project.configurations["runtimeClasspath"])
+
+        // Exclude entire GUI-only dependency groups at the JAR level.
+        // minimize can't strip native resources (.dylib/.so/.dll).
+        // Group patterns use .* suffix because Compose/Skiko use sub-groups
+        // (org.jetbrains.compose.desktop, org.jetbrains.skiko, androidx.compose.runtime, etc.)
+        dependencies {
+            exclude(dependency("org.jetbrains.compose.*:.*"))
+            exclude(dependency("org.jetbrains.skiko.*:.*"))
+            exclude(dependency("androidx.compose.*:.*"))
+            exclude(dependency("io.insert-koin:.*"))
+            exclude(dependency("cafe.adriel.voyager:.*"))
+            exclude(dependency("net.java.dev.jna:.*"))
+            exclude(dependency("com.mikepenz:aboutlibraries.*"))
+        }
+
+        exclude(
+            // Broken JAR signatures from merged dependency JARs — the JVM
+            // rejects the entire JAR if these remain with invalid hashes.
+            "META-INF/*.SF",
+            "META-INF/*.DSA",
+            "META-INF/*.RSA",
+            "META-INF/INDEX.LIST",
+            // Prebuilt aapt binaries (same as main JAR)
+            "/prebuilt/linux/aapt",
+            "/prebuilt/windows/aapt.exe",
+            "/prebuilt/*/aapt_*",
+        )
+        duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+        filesMatching(listOf(
+            "META-INF/NOTICE",
+            "META-INF/NOTICE.txt",
+            "META-INF/NOTICE.md",
+        )) {
+            duplicatesStrategy = DuplicatesStrategy.INCLUDE
+        }
+        from(rootProject.file("NOTICE"), rootProject.file("LICENSE"))
+        minimize {
+            // Shared deps that use reflection / ServiceLoader.
+            // GUI-only deps (Compose, Koin, Voyager, JNA, AboutLibraries) are
+            // excluded at the JAR level above; they never reach minimize.
+            // kotlinx-coroutines-swing is NOT excluded — no CLI/engine code
+            // imports it, so minimize strips it automatically.
+            exclude(dependency("org.bouncycastle:.*"))
+            exclude(dependency("com.github.REAndroid:ARSCLib"))
+            exclude(dependency("app.morphe:morphe-patcher"))
+            exclude(dependency("io.ktor:.*"))           // ServiceLoader
+            exclude(dependency("org.slf4j:.*"))
+        }
+        mergeServiceFiles()
+        transform(NoticeMergeTransformer::class.java)
+
+        manifest {
+            attributes(
+                "Main-Class" to "app.morphe.cli.CliMainKt",
+                "Implementation-Title" to "${project.name}-cli",
+                "Implementation-Version" to project.version,
+            )
+        }
+    }
+
     distTar {
         duplicatesStrategy = DuplicatesStrategy.EXCLUDE
     }
@@ -241,31 +321,22 @@ tasks {
     }
 
     publish {
-        dependsOn(shadowJar)
+        dependsOn(shadowJar, named("shadowCliJar"))
     }
 }
 
 // ============================================================================
-// Publishing / Signing
+// Publishing
 // ============================================================================
-// Needed by gradle-semantic-release-plugin.
-// Tracking: https://github.com/KengoTODA/gradle-semantic-release-plugin/issues/435
-
-// The maven-publish is also necessary to make the signing plugin work.
+// Required by gradle-semantic-release-plugin — the publish task must exist.
 publishing {
     repositories {
         mavenLocal()
     }
 
     publications {
-        create<MavenPublication>("morphe-cli-publication") {
+        create<MavenPublication>("morphe-desktop-publication") {
             from(components["java"])
         }
     }
-}
-
-signing {
-    useGpgCmd()
-
-    sign(publishing.publications["morphe-cli-publication"])
 }

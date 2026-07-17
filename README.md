@@ -1,65 +1,36 @@
-<div align="center"> 
-<picture>
-    <source
-      width="512px"
-      media="(prefers-color-scheme: dark)"
-      srcset="https://raw.githubusercontent.com/MorpheApp/.github/refs/heads/main/profile/assets/morphe-wordmark/morphe_wordmark_dark.svg"
-    />
-    <img 
-      width="512px"
-      src="https://raw.githubusercontent.com/MorpheApp/.github/refs/heads/main/profile/assets/morphe-wordmark/morphe_wordmark_light.svg"
-    />
-</picture>
+# Mix Desktopless
 
-[![Website badge](https://img.shields.io/badge/Website-gray.svg?logo=data:image/svg%2bxml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjwhLS0gQ29weXJpZ2h0IDIwMjUgTW9ycGhlLiBUaGlzIGlzIGNvcHlyaWdodGVkIGNvbnRlbnQsIGFuZCBub3QgbGljZW5zZWQgdW5kZXIgb3BlbiBzb3VyY2UgdGVybXMuCiAgICAgU2VlIGh0dHBzOi8vZ2l0aHViLmNvbS9Nb3JwaGVBcHAvbW9ycGhlLWJyYW5kaW5nIC0tPgoKPHN2ZwogICB3aWR0aD0iNTEyIgogICBoZWlnaHQ9IjUxMiIKICAgdmlld0JveD0iMCAwIDUxMiA1MTIiCiAgIHZlcnNpb249IjEuMSIKICAgaWQ9InN2ZzIiCiAgIHNvZGlwb2RpOmRvY25hbWU9Im1vcnBoZV9sb2dvX2xpZ2h0LnN2ZyIKICAgaW5rc2NhcGU6dmVyc2lvbj0iMS40LjIgKGViZjBlOTQwZDAsIDIwMjUtMDUtMDgpIgogICB4bWxuczppbmtzY2FwZT0iaHR0cDovL3d3dy5pbmtzY2FwZS5vcmcvbmFtZXNwYWNlcy9pbmtzY2FwZSIKICAgeG1sbnM6c29kaXBvZGk9Imh0dHA6Ly9zb2RpcG9kaS5zb3VyY2Vmb3JnZS5uZXQvRFREL3NvZGlwb2RpLTAuZHRkIgogICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgIHhtbG5zOnN2Zz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxzb2RpcG9kaTpuYW1lZHZpZXcKICAgICBpZD0ibmFtZWR2aWV3MiIKICAgICBwYWdlY29sb3I9IiNmZmZmZmYiCiAgICAgYm9yZGVyY29sb3I9IiMwMDAwMDAiCiAgICAgYm9yZGVyb3BhY2l0eT0iMC4yNSIKICAgICBpbmtzY2FwZTpzaG93cGFnZXNoYWRvdz0iMiIKICAgICBpbmtzY2FwZTpwYWdlb3BhY2l0eT0iMC4wIgogICAgIGlua3NjYXBlOnBhZ2VjaGVja2VyYm9hcmQ9IjAiCiAgICAgaW5rc2NhcGU6ZGVza2NvbG9yPSIjZDFkMWQxIgogICAgIGlua3NjYXBlOnpvb209IjEuMTU0Mjk2OSIKICAgICBpbmtzY2FwZTpjeD0iMjU2IgogICAgIGlua3NjYXBlOmN5PSIyNTYiCiAgICAgaW5rc2NhcGU6d2luZG93LXdpZHRoPSIxNDQwIgogICAgIGlua3NjYXBlOndpbmRvdy1oZWlnaHQ9IjgzNiIKICAgICBpbmtzY2FwZTp3aW5kb3cteD0iMCIKICAgICBpbmtzY2FwZTp3aW5kb3cteT0iMCIKICAgICBpbmtzY2FwZTp3aW5kb3ctbWF4aW1pemVkPSIxIgogICAgIGlua3NjYXBlOmN1cnJlbnQtbGF5ZXI9InN2ZzIiPgogICAgPGlua3NjYXBlOnBhZ2UKICAgICAgIHg9IjAiCiAgICAgICB5PSIwIgogICAgICAgd2lkdGg9IjUxMiIKICAgICAgIGhlaWdodD0iNTEyIgogICAgICAgaWQ9InBhZ2UyIgogICAgICAgbWFyZ2luPSIwIgogICAgICAgYmxlZWQ9IjAiIC8+CiAgPC9zb2RpcG9kaTpuYW1lZHZpZXc+CiAgPGRlZnMKICAgICBpZD0iZGVmczIiIC8+CiAgPCEtLSBMZXR0ZXIgLS0+CiAgPGcKICAgICBpZD0iTGV0dGVyIgogICAgIHN0eWxlPSJmaWxsOiNmZmZmZmY7ZmlsbC1vcGFjaXR5OjEiPgogICAgPHBhdGgKICAgICAgIGlkPSJMZWZ0IgogICAgICAgZD0ibSAxMjMsMTQwIGMgLTIxLDAgLTM5LDE3IC00MCwzOCB2IDE5MiBjIDEsMjEgMTksMzggNDAsMzggMjEsMCAzOSwtMTcgNDAsLTM4IFYgMTc4IGMgLTEsLTIxIC0xOSwtMzggLTQwLC0zOCB6IgogICAgICAgZmlsbD0iIzFFNUFBOCIKICAgICAgIHN0eWxlPSJmaWxsOiNmZmZmZmY7ZmlsbC1vcGFjaXR5OjEiIC8+CiAgICA8cGF0aAogICAgICAgaWQ9IlJpZ2h0IgogICAgICAgZD0ibSAzNDksMjg1IHYgODUgYyAxLDIxIDE5LDM4IDQwLDM4IDIxLDAgMzksLTE3IDQwLC0zOCBWIDE4MiBjIC0xMSwtMTQgLTc0LDYzIC04MCwxMDMgeiIKICAgICAgIGZpbGw9IiMwMEFGQUUiCiAgICAgICBzdHlsZT0iZmlsbDojZmZmZmZmO2ZpbGwtb3BhY2l0eToxIiAvPgogICAgPHBhdGgKICAgICAgIGlkPSJNaWRkbGUiCiAgICAgICBkPSJtIDEyNywxMDggYyAtMzQsMCAtNDQsMjUgLTQ0LDQwIHYgNTQgYyAzMCwtMzMgNzUsMjcgODAsMzMgMjgsMzIgNDQsODcgOTMsODkgNDgsLTIgNjcsLTU2IDkzLC04OSAwLDAgNDUsLTc0IDgwLC04MCAwLC0yOCAtMTEsLTQ3IC00NCwtNDcgLTM0LDAgLTU4LDUwIC03NSw3MiAtMTcsMjIgLTI1LDQ2IC01NCw0NiAtMjksMCAtMzgsLTI1IC01NCwtNDYgLTE3LC0yMiAtNDEsLTcyIC03NSwtNzIgeiIKICAgICAgIGZpbGw9InVybCgjbGluZWFyR3JhZGllbnQyKSIKICAgICAgIHN0eWxlPSJmaWxsOiNmZmZmZmY7ZmlsbC1vcGFjaXR5OjEiIC8+CiAgPC9nPgo8L3N2Zz4K&style=for-the-badge)](https://morphe.software) [![Documentation badge](https://img.shields.io/badge/Documentation-gray?style=for-the-badge&logo=github)](https://github.com/MorpheApp/morphe-documentation#readme) [![Subreddit badge](https://img.shields.io/badge/Reddit-gray?style=for-the-badge&logo=reddit&logoColor=white)](https://www.reddit.com/r/MorpheApp) [![Crowdin badge](https://img.shields.io/badge/Translations-gray?style=for-the-badge&logo=crowdin)](https://morphe.software/translate)
-<br>
-</div>
+A CLI-first Android app patcher, forked from [Morphe Desktop](https://github.com/MorpheApp/morphe-desktop).
 
-# 💻 Morphe CLI
+> [!IMPORTANT]
+> **Mix Desktopless is not affiliated with, endorsed by, or connected to the Morphe project or its authors in any way.** This is an independent fork distributed under the GPLv3 with distinct branding as required by the license.
 
-Command-line application to use Morphe.
+## About
+Mix Desktopless is a CLI application that uses [Morphe Patcher](https://github.com/MorpheApp/morphe-patcher) to patch Android apps. It is a fork of [Morphe Desktop](https://github.com/MorpheApp/morphe-desktop) - the GUI code still exists in the repository but **no GUI releases will be published**. Only the CLI JAR is built and distributed.
 
-&nbsp;
-## ❓ About
+This fork tracks **stable upstream releases only**. Pre-release / dev channel support is intentionally excluded. The goal is a dependable, up-to-date sync with tagged stable versions.
 
-Morphe CLI is a command-line application that uses [Morphe Patcher](https://github.com/MorpheApp/morphe-patcher) to patch Android apps.
+## Prerequisites
+1. Java Runtime Environment 21 or above ([Azul Zulu JRE](https://www.azul.com/downloads/?version=java-21-lts&package=jre#zulu), [Temurin](https://adoptium.net/temurin/releases?version=21&os=any&arch=any) or [OpenJDK](https://jdk.java.net/archive/)).
+2. Mix Desktopless jar file (mix-desktopless-*-cli.jar). Download the latest from [here](https://github.com/IMXEren/mix-desktopless/releases/latest).
 
-Morphe CLI is based off the prior work of [ReVanced](https://github.com/ReVanced/revanced-cli).
-All modifications made by Morphe, along with their dates, can be found in the Git history.
+## Documentation
+Learn how to use Mix Desktopless by following the original Morphe Desktop CLI documentation.
 
-## 💪 Features
+> The original Morphe Desktop also included a GUI. This fork does not publish GUI releases - CLI only.
 
-Some of the features Morphe CLI provides are:
 
-- 💉 **Patch apps**: Harness Morphe Patcher to patch Android apps.
-- 💾 **Install and uninstall apps**: Install and uninstall Apps via ADB,
-  using the Android package manager or by mounting using root permissions.
-- 📃 **List patches from patch bundles**: List available patches, compatible packages, and versions.
-- 💪 **Flexibility and functionality**: Apply any combination of patches to any version of Android apps.
-
-## 🔽 Download
-
-You can download the most recent version of Morphe CLI from
-[here](https://github.com/MorpheApp/morphe-cli/releases/latest).  
-Learn how to use Morphe CLI by following the [documentation](/docs).
-
-## 📚 Everything else
-
-### 📙 Contributing
-
-Thank you for considering contributing to Morphe CLI.
+## Contributing
+Thank you for considering contributing to Mix Desktopless.
 You can find the contribution guidelines [here](CONTRIBUTING.md).
 
-### 🛠️ Building
 
-To build a Morphe CLI, you can follow the [documentation](/docs).
+[//]: # (### Building)
 
-### 📃 Documentation
+[//]: # (To build Mix Desktopless, you can follow the [documentation]&#40;/docs&#41;.)
 
-You can find the documentation of Morphe CLI [here](/docs).
 
-## 📜 License
-
+## License
 Morphe Patches are licensed under the [GNU General Public License v3.0](LICENSE), with additional conditions under GPLv3 Section 7:
 
 - **Attribution (7b):** Any use of this code, including derivative works, must preserve all original notices and disclaimers.

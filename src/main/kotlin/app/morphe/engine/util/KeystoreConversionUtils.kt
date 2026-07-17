@@ -1,6 +1,6 @@
 /*
  * Copyright 2026 Morphe.
- * https://github.com/MorpheApp/morphe-cli
+ * https://github.com/MorpheApp/morphe-desktop
  *
  * Ported from morphe-manager. Manager wrote this because morphe-patcher only
  * speaks BKS but users (including URV cross-over users) often bring keystores
