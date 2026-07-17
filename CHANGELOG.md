@@ -1,3 +1,11 @@
+# [1.11.0](https://github.com/IMXEren/mix-desktopless/compare/v1.10.0...v1.11.0) (2026-07-17)
+
+
+### Features
+
+* add CLI-only shadow JAR and rebrand to Mix Desktopless ([9ad9b58](https://github.com/IMXEren/mix-desktopless/commit/9ad9b58596c1858aea292053ce2a9edf1dc34b22))
+* Rename project to "Morphe Desktop" ([#181](https://github.com/IMXEren/mix-desktopless/issues/181)) ([a5285cc](https://github.com/IMXEren/mix-desktopless/commit/a5285cc3e6a90c9951ff42f3aab882419b6c20f0))
+
 # [1.11.0-dev.1](https://github.com/IMXEren/mix-desktopless/compare/v1.10.0...v1.11.0-dev.1) (2026-07-17)
 
 
