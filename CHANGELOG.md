@@ -1,3 +1,10 @@
+# [1.12.0](https://github.com/IMXEren/mix-desktopless/compare/v1.11.0...v1.12.0) (2026-07-23)
+
+
+### Features
+
+* Add icon studio ([#211](https://github.com/IMXEren/mix-desktopless/issues/211)) ([af5ffe5](https://github.com/IMXEren/mix-desktopless/commit/af5ffe5a2ecc985266aed9135b60cdc05f5cc60d))
+
 # [1.12.0-dev.1](https://github.com/IMXEren/mix-desktopless/compare/v1.11.0...v1.12.0-dev.1) (2026-07-23)
 
 
