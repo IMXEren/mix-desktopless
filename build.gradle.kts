@@ -305,7 +305,7 @@ tasks {
 
         manifest {
             attributes(
-                "Main-Class" to "app.morphe.cli.CliMainKt",
+                "Main-Class" to "app.morphe.desktop.CliMainKt",
                 "Implementation-Title" to "${project.name}-cli",
                 "Implementation-Version" to project.version,
             )
