@@ -22,11 +22,11 @@ group = "app.morphe"
 // ============================================================================
 kotlin {
     jvmToolchain {
-        languageVersion.set(JavaLanguageVersion.of(17))
+        languageVersion.set(JavaLanguageVersion.of(21))
         vendor.set(JvmVendorSpec.JETBRAINS)
     }
     compilerOptions {
-        jvmTarget.set(JvmTarget.JVM_17)
+        jvmTarget.set(JvmTarget.JVM_21)
     }
 }
 
@@ -305,7 +305,7 @@ tasks {
 
         manifest {
             attributes(
-                "Main-Class" to "app.morphe.cli.CliMainKt",
+                "Main-Class" to "app.morphe.desktop.CliMainKt",
                 "Implementation-Title" to "${project.name}-cli",
                 "Implementation-Version" to project.version,
             )
