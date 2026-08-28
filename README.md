@@ -2,6 +2,9 @@
 
 A CLI-first Android app patcher, forked from [Morphe Desktop](https://github.com/MorpheApp/morphe-desktop).
 
+> [!NOTE]
+> Starting with release **1.13.0**, upstream [Morphe Desktop](https://github.com/MorpheApp/morphe-desktop) publishes artifacts without bundled GUI dependencies, resulting in similarly small downloads. This project is therefore no longer needed; please use the upstream releases instead.
+
 > [!IMPORTANT]
 > **Mix Desktopless is not affiliated with, endorsed by, or connected to the Morphe project or its authors in any way.** This is an independent fork distributed under the GPLv3 with distinct branding as required by the license.
 
